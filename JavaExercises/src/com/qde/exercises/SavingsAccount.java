@@ -8,6 +8,11 @@ public class SavingsAccount extends Account {
 		finalInterestRate =  this.balance * this.interestRate;
 		return finalInterestRate;
 	}
+	
+	public void withdraw(double amount) {
+		this.setBalance(this.getBalance()-amount);
+	}
+	
 
 	public double getInterestRate() {
 		return interestRate;
@@ -18,7 +23,6 @@ public class SavingsAccount extends Account {
 	}
 	
 	
-	public static double returntwo() {
-		return 2;
-	}
+	
+
 }
