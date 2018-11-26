@@ -31,6 +31,14 @@ public class JavaSyntaxDemo {
 		SavingsAccount account = new SavingsAccount();
 		account.setBalance(500);
 		account.setInterestRate(5);
+		Double balance = new Double(account.getBalance());
+		switch (balance.intValue()) {
+		case 200 :
+			System.out.println("You have 200 bucks");
+		case 500 :
+			System.out.println("You have 500 bucks");
+		}
+		
 		
 		System.out.println("Balance after interest computation : " + account.computeInterest());
 		
