@@ -1,6 +1,6 @@
 package com.qde.exercises.geometry;
 
-public class Triangle {
+public class Triangle implements Shape{
 	private double height;
 	private double base;
 	private double sideA;

@@ -1,6 +1,6 @@
 package com.qde.exercises.geometry;
 
-public class Circle {
+public class Circle implements Shape{
 	
 	private double radius;
 	
