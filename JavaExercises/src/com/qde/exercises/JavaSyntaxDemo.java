@@ -3,6 +3,8 @@ package com.qde.exercises;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.qde.exercises.geometry.Circle;
+
 public class JavaSyntaxDemo {
 	
 	private String version = "DEMO_V00.01";
@@ -46,8 +48,15 @@ public class JavaSyntaxDemo {
 //		account.withdraw(50);
 //		System.out.println("Balance after withdrawal : " + account.getBalance());
 
-		
-		
+		Circle bigCircle = new Circle();
+		bigCircle.setRadius(60); // the radius is set thanks to the setter
+		Circle smallCircle = new Circle(20); // the radius is set thanks to the constructor
+		System.out.println("The small circle radius is : " + smallCircle.getRadius());
+		System.out.println("The big circle radius is : " + bigCircle.getRadius());
+		System.out.println("Small circle area : " + smallCircle.getArea());
+		System.out.println("Small circle perimeter : " + smallCircle.getPerimeter());
+		System.out.println("Big circle area : " + bigCircle.getArea());
+		System.out.println("Big circle perimeter : " + bigCircle.getPerimeter());
     }
 	
 
