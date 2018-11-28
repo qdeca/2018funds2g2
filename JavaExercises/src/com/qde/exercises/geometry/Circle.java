@@ -3,6 +3,14 @@ package com.qde.exercises.geometry;
 public class Circle {
 	
 	private double radius;
+	
+	public Circle() {
+		
+	}
+	
+	public Circle(double inputRadius) {
+		this.radius = inputRadius;
+	}
 
 	public double getRadius() {
 		return radius;
