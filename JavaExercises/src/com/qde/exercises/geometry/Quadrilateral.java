@@ -3,6 +3,8 @@ package com.qde.exercises.geometry;
 public class Quadrilateral {
 	private double height;
 	private double width;
+	
+	
 	public double getHeight() {
 		return height;
 	}
@@ -15,6 +17,7 @@ public class Quadrilateral {
 	public void setWidth(double width) {
 		this.width = width;
 	}
+	
 	
 	public double getArea() {
 		return this.getHeight() * this.getWidth();
