@@ -1,6 +1,9 @@
 package com.qde.exercises.login;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.qde.exercises.Factorial;
 
 public class Login {
 
@@ -9,7 +12,10 @@ public class Login {
 	private static final String CORRECT_PASSWORD = "password";
 
 	public static void main(String[] args) {
-		login();
+		//login();
+		System.out.println(Factorial.factorialFirstWay(5));
+		System.out.println(Factorial.factorialSecondWay(5));
+		System.out.println(Factorial.factorialThirdWay(5));
 
 	}
 
