@@ -1,5 +1,6 @@
 package com.qde.exercises;
 
+//TODO this class should be documented 
 public class Account {
 	protected double balance;
 
