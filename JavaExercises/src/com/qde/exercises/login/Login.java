@@ -1,11 +1,11 @@
 package com.qde.exercises.login;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Login {
 
-	private static final String CORRECT_LOGIN = "admin";
-	private static final String CORRECT_PASSWORD = "password";
 
 	public static void main(String[] args) {
 		login();
@@ -17,11 +17,7 @@ public class Login {
 
 	private static void login() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please enter your login : ");
-		String userLoginInput = scanner.nextLine();
-		System.out.println("Please enter your password : ");
-		String userPasswordInput = scanner.nextLine();
-		if (CORRECT_LOGIN.equals(userLoginInput) && CORRECT_PASSWORD.equals(userPasswordInput)) {
+		if (authenticate(scanner)) {
 
 			System.out.println("Congratulations, you are authenticated !");
 
@@ -30,6 +26,32 @@ public class Login {
 		} else {
 			System.out.println("Authentication failed.");
 		}
+	}
+
+	private static boolean authenticate(Scanner scanner) {
+		System.out.println("Please enter your login : ");
+		String userLoginInput = scanner.nextLine();
+		System.out.println("Please enter your password : ");
+		String userPasswordInput = scanner.nextLine();
+		
+		File file = new File("auth.txt");
+		Scanner credentialsScanner = null;
+		try {
+			credentialsScanner = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (credentialsScanner == null) {
+			scanner.close();
+			return false;
+		}
+		String line = credentialsScanner.nextLine();
+		String[] parts = line.split(":");
+		
+	
+		return parts[0].equals(userLoginInput) && parts[1].equals(userPasswordInput);
+		
 	}
 
 	private static void menuNavigation(Scanner scanner) {
