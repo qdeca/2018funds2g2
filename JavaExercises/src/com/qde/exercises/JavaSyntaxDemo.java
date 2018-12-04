@@ -23,6 +23,11 @@ public class JavaSyntaxDemo {
 		return this.version;
 	}
 	
+	
+	public static void main(String[] args) {
+		Circle circle = new Circle(20);
+		
+	}
 //	public static void main(String[] args){
 ////		Customer customer1 = new Customer();
 ////		customer1.setName("Smith");

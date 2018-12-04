@@ -1,23 +1,22 @@
 package com.qde.exercises.geometry;
 
-public class Circle implements Shape{
+public class Circle extends Ellipse implements Shape{
 	
-	private double radius;
 	
 	public Circle() {
-		
+		super(0,0);
 	}
 	
 	public Circle(double inputRadius) {
-		this.radius = inputRadius;
+		super(inputRadius, inputRadius);
 	}
 
 	public double getRadius() {
-		return radius;
+		return getSemiMajor();
 	}
 
 	public void setRadius(double radius) {
-		this.radius = radius;
+		this.setSemiMajor(radius);
 	}
 	
 	
