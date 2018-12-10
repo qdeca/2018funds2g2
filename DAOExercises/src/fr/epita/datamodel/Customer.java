@@ -15,6 +15,11 @@ public class Customer {
 		this.name = name;
 		this.address = address;
 	}
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", address=" + address + "]";
+	}
+
 	public String getName() {
 		return name;
 	}
