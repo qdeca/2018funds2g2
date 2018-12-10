@@ -11,6 +11,9 @@ public class Logger {
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd_HH:mm:ss.SSS");
 	private static boolean isInitialized = false;
 
+	private static String currentLevel = "INFO";
+	
+	
 	private static PrintWriter pw;
 
 	public static void logMessage(String message) {
@@ -22,6 +25,20 @@ public class Logger {
 			pw.println(SIMPLE_DATE_FORMAT.format(date) + "-" + message);
 		}
 		pw.flush();
+	}
+	
+	
+	public static void info(String message) {
+		logMessage(" INFO " + message);
+	}
+	public static void warn(String message) {
+		logMessage(" WARN " + message);
+	}
+	public static void debug(String message) {
+		logMessage(" DEBUG " + message);
+	}
+	public static void error(String message) {
+		logMessage(" ERROR " + message);
 	}
 
 	private static PrintWriter initialize(){

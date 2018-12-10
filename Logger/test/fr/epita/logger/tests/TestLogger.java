@@ -6,7 +6,7 @@ public class TestLogger {
 
 	
 	public static void main(String[] args) {
-		Logger.logMessage("hello!");
-		Logger.logMessage("this is to test the logger feature");
+		Logger.info("hello!");
+		Logger.debug("this is to test the logger feature");
 	}
 }

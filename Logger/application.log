@@ -4,3 +4,6 @@ initialized!
 initialized!
 20181204_20:24:12.397-hello!
 20181204_20:24:12.398-this is to test the logger feature
+initialized!
+20181210_19:09:22.803- INFO hello!
+20181210_19:09:22.804- DEBUG this is to test the logger feature
