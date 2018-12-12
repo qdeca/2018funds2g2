@@ -3,13 +3,13 @@ package fr.epita.tests;
 import java.util.List;
 
 import fr.epita.datamodel.Question;
-import fr.epita.services.dao.QuestionDAO;
+import fr.epita.services.dao.QuestionFileDAO;
 
 public class QuestionDAOTest {
 
 	
 	public static void main(String[] args) {
-		QuestionDAO dao = new QuestionDAO();
+		QuestionFileDAO dao = new QuestionFileDAO();
 		//questionCreationTest(dao);
 		
 		List<Question> questions = dao.getAllQuestions();		// get all questions from the file
@@ -19,7 +19,7 @@ public class QuestionDAOTest {
 		
 	}
 
-	private static void questionCreationTest(QuestionDAO dao) {
+	private static void questionCreationTest(QuestionFileDAO dao) {
 		Question firstQuestion = new Question(1, "What is the square root of 25 ?");
 		Question secondQuestion = new Question(2, "How many sides are in a triangle ?");
 		

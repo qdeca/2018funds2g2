@@ -10,7 +10,7 @@ import java.util.List;
 import fr.epita.datamodel.Choice;
 import fr.epita.logger.Logger;
 
-public class ChoiceDAO {
+public class ChoiceFileDAO {
 
 	private static final String CHOICE_DB_FILE = "choice.db";
 
@@ -18,7 +18,7 @@ public class ChoiceDAO {
 
 	private File file;
 	
-	public ChoiceDAO() {
+	public ChoiceFileDAO() {
 		file = new File(CHOICE_DB_FILE);
 			try {
 				this.writer = new PrintWriter(new FileWriter(file, true));

@@ -11,7 +11,7 @@ import java.util.List;
 import fr.epita.datamodel.Question;
 import fr.epita.logger.Logger;
 
-public class QuestionDAO {
+public class QuestionFileDAO {
 	
 	private static final String QUESTION_DB_FILE = "questions.db";
 	
@@ -21,7 +21,7 @@ public class QuestionDAO {
 
 	
 	
-	public QuestionDAO() {
+	public QuestionFileDAO() {
 		file = new File(QUESTION_DB_FILE);
 		try {
 			this.writer = new PrintWriter(new FileWriter(file, true));
