@@ -12,19 +12,18 @@ import fr.epita.logger.Logger;
 
 public class ChoiceDAO {
 
+	private static final String CHOICE_DB_FILE = "choice.db";
+
 	private PrintWriter writer;
 
 	private File file;
 	
-	private Logger log;
-	
-	
 	public ChoiceDAO() {
-		file = new File("choice.db");
+		file = new File(CHOICE_DB_FILE);
 			try {
 				this.writer = new PrintWriter(new FileWriter(file, true));
 			} catch (IOException e) {
-				log.error("Exception occured while init the writer");
+				Logger.error("Exception occured while init the writer");
 				e.printStackTrace();
 			}
 

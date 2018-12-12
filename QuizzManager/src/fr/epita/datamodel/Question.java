@@ -6,6 +6,18 @@ public class Question {
 	
 	private String label;
 
+	
+	
+	public Question() {
+
+	}
+
+	public Question(int id, String label) {
+		super();
+		this.id = id;
+		this.label = label;
+	}
+
 	public int getId() {
 		return id;
 	}
