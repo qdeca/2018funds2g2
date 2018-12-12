@@ -2,6 +2,8 @@ package fr.epita.datamodel;
 
 public class Customer {
 	
+	// CREATE TABLE CUSTOMER(ID INT PRIMARY KEY, NAME VARCHAR(255), AGE INT);
+	
 	private String name;
 	private String address;
 	
