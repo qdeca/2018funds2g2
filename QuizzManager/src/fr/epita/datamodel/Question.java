@@ -2,6 +2,8 @@ package fr.epita.datamodel;
 
 public class Question {
 	
+	// CREATE TABLE QUESTION (ID INT PRIMARY KEY, LABEL VARCHAR(255));
+	
 	private int id;
 	
 	private String label;

@@ -2,6 +2,8 @@ package fr.epita.datamodel;
 
 public class Choice {
 	
+	 //CREATE TABLE CHOICE (ID INT PRIMARY KEY, LABEL VARCHAR(255), VALID BOOLEAN, QUESTIONID INT);
+	
 	private int id;
 	
 	private String label;
