@@ -11,10 +11,7 @@ public class CustomerDAO {
 
 	
 	public void create(Customer customer) {
-		JdbcDataSource datasource = new JdbcDataSource();
-		datasource.setUrl("");
-		datasource.setUser("sa");
-		datasource.setPassword("");
+
 		
 	}
 }
