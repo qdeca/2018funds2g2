@@ -29,12 +29,12 @@ public class JDBCTest {
 			
 			
 			//customer read by name
-			PreparedStatement statement2 = connection.prepareStatement("SELECT NAME, ADDRESS FROM CUSTOMER WHERE NAME = ? ");
-			statement2.setString(1, customer.getName());
-			ResultSet result = statement2.executeQuery();
-			while(result.next()) {
-				System.out.println(result.getString("NAME"));
-				System.out.println(result.getString("ADDRESS"));
+			PreparedStatement statement2 = connection.prepareStatement("SELECT NAME, ADDRESS FROM CUSTOMER WHERE NAME = ? "); // write query but dont specify parameters yet
+			statement2.setString(1, customer.getName());  // add name parameter to query
+			ResultSet result = statement2.executeQuery(); // get query result (list of names and adresses)
+			while(result.next()) { // for each element of the list
+				System.out.println(result.getString("NAME"));  // get the name...
+				System.out.println(result.getString("ADDRESS")); // ...and the address
 			}
 			
 			
