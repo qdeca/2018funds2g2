@@ -33,8 +33,7 @@ public class QuestionFileDAO {
 
 	public void create(Question question) {
 		writer.println("--------------");
-		writer.println(question.getId());
-		writer.println(question.getLabel());
+		writer.println(question.getQuestion());
 		writer.println("--------------");
 		writer.flush();		
 	}

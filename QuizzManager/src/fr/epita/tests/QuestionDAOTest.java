@@ -14,14 +14,14 @@ public class QuestionDAOTest {
 		
 		List<Question> questions = dao.getAllQuestions();		// get all questions from the file
 		for (Question question : questions) {
-			System.out.println(question.getLabel());
+			System.out.println(question.getQuestion());
 		}
 		
 	}
 
 	private static void questionCreationTest(QuestionFileDAO dao) {
-		Question firstQuestion = new Question(1, "What is the square root of 25 ?");
-		Question secondQuestion = new Question(2, "How many sides are in a triangle ?");
+		Question firstQuestion = new Question("What is the square root of 25 ?");
+		Question secondQuestion = new Question("How many sides are in a triangle ?");
 		
 		dao.create(firstQuestion);
 		dao.create(secondQuestion);

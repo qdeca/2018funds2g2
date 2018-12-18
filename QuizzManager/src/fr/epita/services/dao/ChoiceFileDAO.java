@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.List;
 
-import fr.epita.datamodel.Choice;
+import fr.epita.datamodel.MCQChoice;
 import fr.epita.logger.Logger;
 
 public class ChoiceFileDAO {
@@ -29,9 +29,8 @@ public class ChoiceFileDAO {
 
 	}
 
-	public void create(Choice choice) {
+	public void create(MCQChoice choice) {
 		writer.println("--------------");
-		writer.println(choice.getId());
 		writer.println(choice.getLabel());
 		writer.println("Question id " + choice.getQuestion().getId());
 		writer.println(choice.isValid());
@@ -39,13 +38,13 @@ public class ChoiceFileDAO {
 		writer.flush();		
 	}
 	
-	public Choice getChoiceById(int id) {
+	public MCQChoice getChoiceById(int id) {
 		List<String> fileLines;
 		try {
 			fileLines = Files.readAllLines(file.toPath());
 			for(String line : fileLines) {
 				if (line.equals(Integer.toString(id))) {
-					Choice choice = new Choice();
+					MCQChoice choice = new MCQChoice();
 					choice.setId(id);
 					int index = fileLines.indexOf(line);
 					choice.setLabel(fileLines.get(index)+1);

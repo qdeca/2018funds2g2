@@ -3,7 +3,10 @@ package fr.epita.services.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.epita.datamodel.Customer;
 
@@ -22,13 +25,37 @@ public class CustomerDAO {
 			statement.setString(1, customer.getName());
 			statement.setString(2, customer.getAddress());
 			statement.execute();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public Customer read(String name) {
+	public List<Customer> read(String name) {
+		// TODO : create connection, create query, add parameters to query and return results
+		try {
+			Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement("SELECT NAME, ADDRESS FROM CUSTOMER WHERE NAME = ?");
+			statement.setString(1, name);
+			ResultSet result = statement.executeQuery();
+			List<Customer> matchingCustomers = new ArrayList<Customer>();
+			while(result.next()) {
+				Customer matchingCustomer = new Customer();
+				matchingCustomer.setName(result.getString("NAME"));
+				matchingCustomer.setAddress(result.getString("ADDRESS"));
+				matchingCustomers.add(matchingCustomer);
+				
+			}
+			connection.close();
+			return matchingCustomers;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 		
 	}
+	
+	
+	
 }

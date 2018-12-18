@@ -4,37 +4,50 @@ public class Question {
 	
 	// CREATE TABLE QUESTION (ID INT PRIMARY KEY, LABEL VARCHAR(255));
 	
-	private int id;
 	
-	private String label;
+	private String question;
+
+	private String[] topics;
+	
+	private int difficulty;
+	
 
 	
-	
+
 	public Question() {
-
-	}
-
-	public Question(int id, String label) {
 		super();
-		this.id = id;
-		this.label = label;
 	}
 
-	public int getId() {
-		return id;
+	public Question(String question) {
+		super();
+		this.question = question;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public String getQuestion() {
+		return question;
 	}
 
-	public String getLabel() {
-		return label;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public String[] getTopics() {
+		return topics;
 	}
+
+	public void setTopics(String[] topics) {
+		this.topics = topics;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+
 	
 	
 }
