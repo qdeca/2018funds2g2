@@ -58,12 +58,26 @@ public class CustomerDAO {
 	
 	private void update(String newAddress, String name) {
 		// modify address of a given customer name with the new address
-		"UPDATE CUSTOMER SET ADDRESS = ? WHERE NAME = ?"
+		try {
+			Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement("UPDATE CUSTOMER SET ADDRESS = ? WHERE NAME = ?");
+			statement.setString(1, newAddress);
+			statement.setString(2, name);
+			statement.execute();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	private void delete(Customer customer) {
 		// delete customer from database
 		"DELETE FROM CUSTOMER WHERE NAME = ?"
+		// reminder : create connection to DB, 
+		// set up instruction,
+		// fill parameters, 
+		// execute instruction
 	}
 	
 	
