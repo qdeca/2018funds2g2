@@ -56,6 +56,16 @@ public class CustomerDAO {
 		
 	}
 	
+	private void update(String newAddress, String name) {
+		// modify address of a given customer name with the new address
+		"UPDATE CUSTOMER SET ADDRESS = ? WHERE NAME = ?"
+	}
+	
+	private void delete(Customer customer) {
+		// delete customer from database
+		"DELETE FROM CUSTOMER WHERE NAME = ?"
+	}
+	
 	
 	
 }
