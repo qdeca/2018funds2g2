@@ -18,6 +18,7 @@ public class CustomerDAO {
 
 	
 	public void create(Customer customer) {
+		// create a customer in the H2 database of the DB_URL (with username and password)
 		Connection connection;
 		try {
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -33,7 +34,7 @@ public class CustomerDAO {
 	}
 	
 	public List<Customer> read(String name) {
-		// TODO : create connection, create query, add parameters to query and return results
+		// return a list of customer of any given name
 		try {
 			Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			PreparedStatement statement = connection.prepareStatement("SELECT NAME, ADDRESS FROM CUSTOMER WHERE NAME = ?");
@@ -56,7 +57,7 @@ public class CustomerDAO {
 		
 	}
 	
-	private void update(String newAddress, String name) {
+	public void update(String newAddress, String name) {
 		// modify address of a given customer name with the new address
 		try {
 			Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -73,11 +74,16 @@ public class CustomerDAO {
 	
 	private void delete(Customer customer) {
 		// delete customer from database
-		"DELETE FROM CUSTOMER WHERE NAME = ?"
-		// reminder : create connection to DB, 
-		// set up instruction,
-		// fill parameters, 
-		// execute instruction
+		
+		try {
+			Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM CUSTOMER WHERE NAME = ?");
+			statement.setString(1, customer.getName());
+			statement.execute();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
