@@ -1,18 +1,16 @@
 package fr.epita.datamodel;
 
 public class Question {
-	
+
 	// CREATE TABLE QUESTION (ID INT PRIMARY KEY, LABEL VARCHAR(255));
-	
-	
+
+	private int id;
+
 	private String question;
 
 	private String[] topics;
-	
-	private int difficulty;
-	
 
-	
+	private int difficulty;
 
 	public Question() {
 		super();
@@ -47,7 +45,12 @@ public class Question {
 		this.difficulty = difficulty;
 	}
 
+	public int getId() {
+		return id;
+	}
 
-	
-	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }

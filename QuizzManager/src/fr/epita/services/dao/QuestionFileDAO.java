@@ -53,7 +53,7 @@ public class QuestionFileDAO {
 				}
 				if (i % 4 == 2) {							// in this case the label of the question
 					String label = fileLines.get(i);
-					question.setLabel(label);
+					question.setQuestion(label);
 				}
 				if (i % 4 == 3) {							// add the question to the final list before creating another
 					listQuestions.add(question);

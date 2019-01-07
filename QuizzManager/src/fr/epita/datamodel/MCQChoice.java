@@ -2,11 +2,17 @@ package fr.epita.datamodel;
 
 public class MCQChoice {
 	
-	 //CREATE TABLE CHOICE (ID INT PRIMARY KEY, LABEL VARCHAR(255), VALID BOOLEAN, QUESTIONID INT);
+	private int id;
+	
+	//CREATE TABLE CHOICE (ID INT PRIMARY KEY, LABEL VARCHAR(255), VALID BOOLEAN, QUESTIONID INT);
 	
 
+	
+	
 	private String label;
 	
+	
+
 	private MCQQuestion question;
 
 	private boolean valid;
@@ -35,6 +41,14 @@ public class MCQChoice {
 
 	public void setValid(boolean valid) {
 		this.valid = valid;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
