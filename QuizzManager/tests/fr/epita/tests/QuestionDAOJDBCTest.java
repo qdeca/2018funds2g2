@@ -4,18 +4,22 @@ import java.util.List;
 
 import fr.epita.datamodel.Question;
 import fr.epita.services.dao.QuestionFileDAO;
+import fr.epita.services.dao.QuestionJDBCDAO;
 
-public class QuestionDAOTest {
+public class QuestionDAOJDBCTest {
 
 	
 	public static void main(String[] args) {
-		QuestionFileDAO dao = new QuestionFileDAO();
+		QuestionJDBCDAO dao = new QuestionJDBCDAO();
 		//questionCreationTest(dao);
-		
-		List<Question> questions = dao.getAllQuestions();		// get all questions from the file
+		Question criteria = new Question();
+		criteria.setQuestion("acronym");
+		List<Question> questions = dao.search(criteria);		// get all questions from the file
 		for (Question question : questions) {
 			System.out.println(question.getQuestion());
 		}
+		
+		
 		
 	}
 
@@ -25,5 +29,6 @@ public class QuestionDAOTest {
 		
 		dao.create(firstQuestion);
 		dao.create(secondQuestion);
+		
 	}
 }
