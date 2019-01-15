@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.epita.datamodel.Question;
+import fr.epita.services.Configuration;
 
 public class QuestionJDBCDAO {
 
@@ -93,7 +94,12 @@ public class QuestionJDBCDAO {
 	}
 
 	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(URL, USERNAME, PWD);
+		Configuration config = Configuration.getInstance();
+		String url = config.getPropertyValue("jdbc.url");
+		String username = config.getPropertyValue("jdbc.username");
+		String password = config.getPropertyValue("jdbc.password");
+		
+		return DriverManager.getConnection(url, username, password);
 	}
 
 }
