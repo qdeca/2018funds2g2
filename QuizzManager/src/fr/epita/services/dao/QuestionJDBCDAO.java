@@ -1,5 +1,7 @@
 package fr.epita.services.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -93,7 +95,7 @@ public class QuestionJDBCDAO {
 		return questions;
 	}
 
-	private Connection getConnection() throws SQLException {
+	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {
 		Configuration config = Configuration.getInstance();
 		String url = config.getPropertyValue("jdbc.url");
 		String username = config.getPropertyValue("jdbc.username");
