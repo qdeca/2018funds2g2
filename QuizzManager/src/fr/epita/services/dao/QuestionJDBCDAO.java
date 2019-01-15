@@ -12,9 +12,6 @@ import fr.epita.datamodel.Question;
 
 public class QuestionJDBCDAO {
 
-	private static final String PWD = "";
-	private static final String USERNAME = "sa";
-	private static final String URL = "jdbc:h2:tcp://localhost//C:/db/h2DS;create=true";
 	private static final String INSERT_QUERY = "INSERT INTO QUESTIONS (QUESTION,DIFFICULTY) VALUES (?, ?)";
 	private static final String UPDATE_QUERY = "UPDATE QUESTIONS SET QUESTION=?,DIFFICULTY=? WHERE ID=?";
 	private static final String DELETE_QUERY = "DELETE QUESTIONS WHERE ID=?";
