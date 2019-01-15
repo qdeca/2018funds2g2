@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+	<question order="1">
+		<label>What is the sum of 4 and 78 ?</label>
+		<difficulty>0</difficulty>
+		<topics>
+			<topic>Math</topic>
+			<topic>Addition</topic>
+		</topics>
+	</question>
+	<question order="2">
+		<label>What does JVM stands for ?</label>
+		<difficulty>2</difficulty>
+		<topics>
+			<topic>Java</topic>
+		</topics>
+	</question>
+</questions>
