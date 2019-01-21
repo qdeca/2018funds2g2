@@ -21,12 +21,26 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import fr.epita.datamodel.Question;
+import fr.epita.services.dao.QuestionXMLDAO;
+
 public class QuestionXMLDAOTest {
 
 	
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		//xmlRead();
-		xmlWrite();
+		//xmlWrite();
+		QuestionXMLDAO dao = new QuestionXMLDAO();
+		Question question = new  Question();
+		question.setId(5);
+		question.setDifficulty(8);
+		question.setQuestion("What are the main differences between Java and C++ ?");
+		String[] topics = new  String[2];
+		topics[0] = "Java";
+		topics[1] = "C++";
+		question.setTopics(topics);
+		dao.create(question);
+		
 	}
 
 	private static void xmlWrite() throws ParserConfigurationException, SAXException, IOException {
