@@ -29,6 +29,13 @@ public class QuestionXMLDAOTest {
 			NodeList listLabels = question.getElementsByTagName("label"); //get all the elements of the "label" tag (here, only one)
 			String label = listLabels.item(0).getTextContent(); // get the text content of the label element
 			System.out.println("Question : " + label);
+			
+			Element topicList = (Element) question.getElementsByTagName("topics").item(0);
+			NodeList topics = topicList.getElementsByTagName("topic");
+			for (int j=0; j<topics.getLength(); j++) {
+				Element topic = (Element) topics.item(j);
+				System.out.println("Topic : " + topic.getTextContent());
+			}
 		}
 	}
 }
