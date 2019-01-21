@@ -76,10 +76,17 @@ public class QuestionXMLDAO {
 		return result;
 	}
 	
-	public void update(Question question) {
+	public void updateQuestion(Question question) {
 		//TODO get xml file
 		//TODO find question we want to update
 		//TODO edit element(s)
+		//TODO save xml file
+	}
+	
+	public void deleteQuestion(Question question) {
+		//TODO get xml file
+		//TODO find question we want to update
+		//TODO use the method removeChild (instead of appendChild on the create method for example)
 		//TODO save xml file
 	}
 	
