@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <questions>
 	<question order="1">
-		<label>What is the sum of 4 and 78 ?</label>
+		<label size="4">What is the sum of 4 and 78 ?</label>
 		<difficulty>0</difficulty>
 		<topics>
 			<topic>Math</topic>
