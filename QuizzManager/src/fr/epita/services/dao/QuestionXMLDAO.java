@@ -1,13 +1,22 @@
 package fr.epita.services.dao;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,14 +27,60 @@ import fr.epita.datamodel.Question;
 
 public class QuestionXMLDAO {
 
-	public void create(Question question) {
-		//TODO get the xml file in the doc object
-		//TODO Split the question object into elements to be put in the file
-		//TODO modify the xml file with the new question element and its children
+	public void create(Question question) throws ParserConfigurationException, SAXException, IOException {
+		Document doc = xmlInit();
+		
+		Element xmlQuestion = doc.createElement("question");
+		xmlQuestion.setAttribute("order", String.valueOf( question.getId()));
+
+		Element xmlLabel = doc.createElement("label");
+		xmlLabel.setTextContent(question.getQuestion());
+		xmlQuestion.appendChild(xmlLabel);
+		
+		Element xmlDifficulty = doc.createElement("difficulty");
+		xmlDifficulty.setTextContent(String.valueOf(question.getDifficulty()));
+		xmlQuestion.appendChild(xmlDifficulty);
+		
+		Element xmlTopics = doc.createElement("topics");
+		for (String topic : question.getTopics()) {
+			Element xmlTopic = doc.createElement("topic");
+			xmlTopic.setTextContent(topic);
+			xmlTopics.appendChild(xmlTopic);
+		}
+		xmlQuestion.appendChild(xmlTopics);
+		doc.getDocumentElement().appendChild(xmlQuestion);
+		
+		final PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("questions.xml", true)));
+		System.out.println(documentToString(doc));
+		printWriter.flush();
+		printWriter.close();
+		
+	}
+	
+	private String documentToString(Document doc) {
+		String result = "";
+		try {
+			final StringWriter sw = new StringWriter();
+			final TransformerFactory tf = TransformerFactory.newInstance();
+			final Transformer transformer = tf.newTransformer(); //creation of the object that transfoms the xml file
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+
+			transformer.transform(new DOMSource(doc), new StreamResult("questions.xml")); // applying modifications in java to the actual xml file
+			result = sw.toString();
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	public void update(Question question) {
-		
+		//TODO get xml file
+		//TODO find question we want to update
+		//TODO edit element(s)
+		//TODO save xml file
 	}
 	
 	public List<Question> getAllQuestions() throws ParserConfigurationException, SAXException, IOException {
