@@ -1,11 +1,20 @@
 package fr.epita.tests;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,6 +25,61 @@ public class QuestionXMLDAOTest {
 
 	
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+		//xmlRead();
+		xmlWrite();
+	}
+
+	private static void xmlWrite() throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance(); 
+		DocumentBuilder builder = fact.newDocumentBuilder(); // builder used to parse the xml file
+		Document doc = builder.parse(new File("questions.xml")); //extraction of the data in xml 
+
+		// new element creation with the tag question
+		Element newQuestion = doc.createElement("question");
+		newQuestion.setAttribute("order", "3"); // attribute setting
+
+		// new element creation (label)
+		Element newLabel = doc.createElement("label");
+		newLabel.setTextContent("Is Java a compiled language ?");
+		newQuestion.appendChild(newLabel); // put the label element as a child of the new question element
+		
+		// new element creation (difficulty)
+		Element newDifficulty = doc.createElement("difficulty");
+		newDifficulty.setTextContent("2");
+		
+		
+		newQuestion.appendChild(newDifficulty); // put the new question element at the root of the xml file (with all its child it contains)
+		
+		
+		doc.getDocumentElement().appendChild(newQuestion);
+		
+		final PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("questions.xml", true)));
+		System.out.println(documentToString(doc));
+		printWriter.flush();
+		printWriter.close();
+		
+	}
+
+	private static String documentToString(Document doc) {
+		String result = "";
+		try {
+			final StringWriter sw = new StringWriter();
+			final TransformerFactory tf = TransformerFactory.newInstance();
+			final Transformer transformer = tf.newTransformer(); //creation of the object that transfoms the xml file
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+
+			transformer.transform(new DOMSource(doc), new StreamResult("questions.xml")); // applying modifications in java to the actual xml file
+			result = sw.toString();
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	private static void xmlRead() throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance(); 
 		DocumentBuilder builder = fact.newDocumentBuilder(); // builder used to parse the xml file
 		
@@ -36,6 +100,7 @@ public class QuestionXMLDAOTest {
 				Element topic = (Element) topics.item(j);
 				System.out.println("Topic : " + topic.getTextContent());
 			}
+
 		}
 	}
 }
