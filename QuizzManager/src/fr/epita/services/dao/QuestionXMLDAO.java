@@ -19,7 +19,9 @@ import fr.epita.datamodel.Question;
 public class QuestionXMLDAO {
 
 	public void create(Question question) {
-		
+		//TODO get the xml file in the doc object
+		//TODO Split the question object into elements to be put in the file
+		//TODO modify the xml file with the new question element and its children
 	}
 	
 	public void update(Question question) {
