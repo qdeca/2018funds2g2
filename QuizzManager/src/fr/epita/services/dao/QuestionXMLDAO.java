@@ -177,7 +177,7 @@ public class QuestionXMLDAO {
 			String[] topicsToAdd = new String[topics.getLength()];
 			for (int j=0; j<topics.getLength(); j++) {
 				Element topic = (Element) topics.item(j);
-				topicsToAdd[i] = topic.getTextContent();
+				topicsToAdd[j] = topic.getTextContent();
 				
 			}
 			question.setTopics(topicsToAdd);

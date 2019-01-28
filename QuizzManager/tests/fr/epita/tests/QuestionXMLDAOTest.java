@@ -16,6 +16,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,7 +29,7 @@ import fr.epita.services.dao.QuestionXMLDAO;
 public class QuestionXMLDAOTest {
 
 	
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
 		//xmlRead();
 		//xmlWrite();
 //		QuestionXMLDAO dao = new QuestionXMLDAO();
@@ -43,7 +44,7 @@ public class QuestionXMLDAOTest {
 //		dao.create(question);
 		
 		QuestionXMLDAO dao = new QuestionXMLDAO();
-		List<Question> searchResults = dao.search(new Question("JVM"));
+		List<Question> searchResults = dao.searchUsingXPATH(new Question("JVM"));
 		System.out.println(searchResults);
 	}
 

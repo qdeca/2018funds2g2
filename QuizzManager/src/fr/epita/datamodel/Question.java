@@ -1,5 +1,7 @@
 package fr.epita.datamodel;
 
+import java.util.Arrays;
+
 public class Question {
 
 	// CREATE TABLE QUESTION (ID INT PRIMARY KEY, LABEL VARCHAR(255));
@@ -51,6 +53,12 @@ public class Question {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", question=" + question + ", topics=" + Arrays.toString(topics) + ", difficulty="
+				+ difficulty + "]";
 	}
 
 }
