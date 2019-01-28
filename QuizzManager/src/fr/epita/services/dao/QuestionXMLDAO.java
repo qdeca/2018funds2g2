@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,6 +20,11 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -95,18 +102,57 @@ public class QuestionXMLDAO {
 		Document doc = xmlInit();
 		
 		NodeList listQuestionsXML = doc.getElementsByTagName("question");
-		List<Question> result = new ArrayList<>();
-		xmlQuestionParse(listQuestionsXML, result);
+		List<Question> result = xmlQuestionParse(listQuestionsXML);
 		
 		return result;
 	}
 
-	public List<Question> search(Question question) {
+	public List<Question> searchUsingXPATH(Question question) throws XPathExpressionException, ParserConfigurationException, SAXException, IOException{
+		XPathFactory factory = XPathFactory.newInstance();
+		XPath xpathExpression = factory.newXPath();
+		XPathExpression expression = xpathExpression.compile("//question[contains(label/text(), '"+question.getQuestion()+"') ]");
+		NodeList list = (NodeList) expression.evaluate( xmlInit(), XPathConstants.NODESET);
 		
-		//TODO implement the search method
-		return Collections.EMPTY_LIST;
+		return xmlQuestionParse(list);
+		
+		
 	}
-	private void xmlQuestionParse(NodeList listQuestionsXML, List<Question> result) {
+	
+	public List<Question> search(Question question) throws ParserConfigurationException, SAXException, IOException {
+		List<Question> allQuestions = getAllQuestions();
+		List<Question> result = new ArrayList<>();
+		for(Question current : allQuestions) {
+			boolean difficultyMatch = current.getDifficulty() == question.getDifficulty();
+			
+			boolean topicsMatching = false;
+			if (question.getTopics()!= null) {
+				for (String topic : question.getTopics()) {
+					if (Arrays.asList(current.getTopics()).contains(topic)) {
+						topicsMatching = true;
+						break;
+					}
+				}
+			}else {
+				topicsMatching = true;
+			}
+			
+			boolean questionLabelMatching = current.getQuestion().contains(question.getQuestion());
+			if (questionLabelMatching && topicsMatching && difficultyMatch) {
+				result.add(current);
+			}
+			
+		}
+	
+		//result = allQuestions.stream()
+		//		.filter(q -> q.getDifficulty() == question.getDifficulty() && q.getQuestion().contains(question.getQuestion()))
+		//		.collect(Collectors.toList());
+		
+		return result;
+	}
+	private List<Question> xmlQuestionParse(NodeList listQuestionsXML) {
+		
+		List<Question> results = new ArrayList<>();
+		
 		for (int i=0; i<listQuestionsXML.getLength(); i++) {
 			Question question = new Question();
 			Element questionXML = (Element) listQuestionsXML.item(i);
@@ -136,8 +182,9 @@ public class QuestionXMLDAO {
 			}
 			question.setTopics(topicsToAdd);
 			
-			result.add(question);
+			results.add(question);
 		}
+		return results;
 	}
 
 	private Document xmlInit() throws ParserConfigurationException, SAXException, IOException {
