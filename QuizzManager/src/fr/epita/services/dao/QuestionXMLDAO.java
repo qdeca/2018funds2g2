@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -100,6 +101,11 @@ public class QuestionXMLDAO {
 		return result;
 	}
 
+	public List<Question> search(Question question) {
+		
+		//TODO implement the search method
+		return Collections.EMPTY_LIST;
+	}
 	private void xmlQuestionParse(NodeList listQuestionsXML, List<Question> result) {
 		for (int i=0; i<listQuestionsXML.getLength(); i++) {
 			Question question = new Question();
