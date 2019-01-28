@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,17 +31,20 @@ public class QuestionXMLDAOTest {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		//xmlRead();
 		//xmlWrite();
-		QuestionXMLDAO dao = new QuestionXMLDAO();
-		Question question = new  Question();
-		question.setId(5);
-		question.setDifficulty(8);
-		question.setQuestion("What are the main differences between Java and C++ ?");
-		String[] topics = new  String[2];
-		topics[0] = "Java";
-		topics[1] = "C++";
-		question.setTopics(topics);
-		dao.create(question);
+//		QuestionXMLDAO dao = new QuestionXMLDAO();
+//		Question question = new  Question();
+//		question.setId(5);
+//		question.setDifficulty(8);
+//		question.setQuestion("What are the main differences between Java and C++ ?");
+//		String[] topics = new  String[2];
+//		topics[0] = "Java";
+//		topics[1] = "C++";
+//		question.setTopics(topics);
+//		dao.create(question);
 		
+		QuestionXMLDAO dao = new QuestionXMLDAO();
+		List<Question> searchResults = dao.search(new Question("JVM"));
+		System.out.println(searchResults);
 	}
 
 	private static void xmlWrite() throws ParserConfigurationException, SAXException, IOException {
